@@ -1,13 +1,11 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-// Add each letter to array
-var lowerChar = ["a", "b", ]
-// Add array for uppercase, numeric, & special
-
-
-
-
+// Add each letter to array. Add array for uppercase, numeric, & special
+var lowerChar = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var upperChar = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+var numberChar = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+var specialChar = ["!", "#", "$", "%", "&", "(", ")", "*", "+", ",", "-", ".", ":", ";", "<", "=", ">", "?", "@", "[", "^"];
 
 // Write password to the #password input
 function writePassword() {
@@ -21,89 +19,49 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-
-// GIVEN I need a new, secure password
-// WHEN I click the button to generate a password
-// THEN I am presented with a series of prompts for password criteria
-
-
-// I have gotten it to have an alert window pop up but there is no text in it?
-// function prompt() {
-//   var criteria = prompt("Please designate criteria");
-// }
-
-// WHEN prompted for password criteria
-// THEN I select which criteria to include in the password
-
-function prompt2() {
-  var included = prompt("Include  ")
-}
-
-// WHEN prompted for the length of the password
-// THEN I choose a length of at least 8 characters and no more than 128 characters
-
-function Length() {
-  var length = prompt("Desired Character Length", length)
-}
-
-// generateBtn.addEventListener("click", okay, cancel);
-
-// WHEN asked for character types to include in the password
-// THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
-
-// WHEN I answer each prompt
-// THEN my input should be validated and at least one character type should be selected
-
-
-
 // WHEN all prompts are answered
 // THEN a password is generated that matches the selected criteria
 
-function generatePassword() {
-
-  var passPrompt = userPrompt();
+function generatePassword(length, lowercase, uppercase, numeric, special) {
 
 
-  var result = [];
-  var possibleChar = [];
-  var guaranteedChar = [];
 
-  // concat()
-  // push()
+  var allChar = lowerChar.concat(upperChar).concat(numberChar).concat(specialChar);
+  var lowAndUpp = lowerChar.concat(upperChar);
+  var lowAndUppAndNum = lowerChar.concat(upperChar).concat(numberChar);
+  var lowAndUppAndSpecial = lowerChar.concat(upperChar).concat(specialChar);
+  var lowAndNumAndSpecial = lowerChar.concat(numberChar).concat(specialChar);
+  var lowAndNum = lowerChar.concat(numberChar);
+  var lowAndSpecial = lowerChar.concat(specialChar);
+  var uppAndNumAndSpecial = upperChar.concat(numberChar).concat(specialChar);
+  var uppAndNum = upperChar.concat(numberChar);
+  var uppAndSpecial = upperChar.concat(specialChar);
+  var numAndSpecial = numberChar.concat(specialChar);
 
-  //use getRandom in here
+  var result = []
+  var possibleChar = lowerChar.concat(upperChar).concat(numberChar).concat(specialChar);
+  var guaranteedChar = lowerChar.concat(upperChar).concat(numberChar).concat(specialChar);
 
-  // if (lowercase = yes) {
-  //   include lowercase
-  // } else {
-  //   do not include lowercase
-  // }
-
-  // if (uppercase = yes) {
-  //   include uppercase
-  // } else {
-  //   do not include uppercase
-  // }
-
-  // if (number = yes) {
-  //   include number
-  // } else {
-  //   do not include number
-  // }
-
-  // if (special = yes) {
-  //   include special
-  // } else {
-  //   do not include special
-  // }
-};
-
-function getRandom() {
-  //research Math.floor(Math.random)
+function getRandom(characterArray) {
+  return Math.floor(Math.random()*characterArray.length);
 }
 
-// resultDOM.innerText = password;
+function getRandomLowerChar() {
+  return getRandom(lowerChar);
+}
 
+function getRandomUpperChar() {
+  return getRandom(upperChar);
+}
+
+function getRandomNumberChar() {
+  return getRandom(numberChar);
+}
+
+function getRandomSpecialChar() {
+  return getRandom(specialChar);
+}
+}
 
 // WHEN the password is generated
 // THEN the password is either displayed in an alert or written to the page
@@ -140,10 +98,6 @@ var userInput = {
   special:special
 }
 
-console.log (userInput);
-
 return userInput;
 
 }
-
-
