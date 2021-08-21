@@ -7,3 +7,4 @@ Pop up alerts
 
 Use console.log to test my work. Remove it before submitting as it is for test only.
 
+Cannot use charAt on an array. It must be used on a string.

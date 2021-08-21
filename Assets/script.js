@@ -20,8 +20,7 @@ var upperChar = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"
 var numberChar = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 var specialChar = ["!", "#", "$", "%", "&", "(", ")", "*", "+", ",", "-", ".", ":", ";", "<", "=", ">", "?", "@", "[", "^"];
 
-// WHEN all prompts are answered
-// THEN a password is generated that matches the selected criteria
+// Password is generated that matches the selected criteria
 
   var allChar = lowerChar.concat(upperChar).concat(numberChar).concat(specialChar);
   var lowAndUpp = lowerChar.concat(upperChar);
@@ -42,7 +41,7 @@ var specialChar = ["!", "#", "$", "%", "&", "(", ")", "*", "+", ",", "-", ".", "
   var length = prompt("Desired Character Length")  
 
   function generatePassword() {
-    var charSet = "";
+    var charSet = [];
   
     if (length < 8 || length > 128) {
       alert ("Please choose a character length between 8-128");
@@ -91,37 +90,26 @@ var specialChar = ["!", "#", "$", "%", "&", "(", ")", "*", "+", ",", "-", ".", "
       charSet = specOnly;
     }
 
-    var returnValue = "";
+    var returnValue = [];
+    console.log(charSet);
     for (var i = 0; i < length; i++) {
-      returnValue += charSet.charAt(Math.floor(Math.random() * charSet.length));
+    var randomCharIndex = getRandom(charSet);
+    console.log("Index", randomCharIndex);
+    var randomChar = charSet[randomCharIndex];
+    console.log("Character", randomChar);
+    returnValue.push (randomChar);
+
     }
-    return returnValue;
+    return returnValue.join("");
   }
 
-  // var result = []
-  // var possibleChar = lowerChar.concat(upperChar).concat(numberChar).concat(specialChar);
-  // var guaranteedChar = lowerChar.concat(upperChar).concat(numberChar).concat(specialChar);
+function getRandom(characterArray) {
+  return Math.floor(Math.random()*characterArray.length);
+}
 
-// function getRandom(characterArray) {
-//   return Math.floor(Math.random()*characterArray.length);
-// }
+// Password is written to the page
+var password = generatePassword();
 
-// function getRandomLowerChar() {
-//   return getRandom(lowerChar);
-// }
+var passwordArea = document.querySelector("#password");
 
-// function getRandomUpperChar() {
-//   return getRandom(upperChar);
-// }
-
-// function getRandomNumberChar() {
-//   return getRandom(numberChar);
-// }
-
-// function getRandomSpecialChar() {
-//   return getRandom(specialChar);
-// }
-
-// WHEN the password is generated
-// THEN the password is either displayed in an alert or written to the page
-alert(generatePassword());
+passwordArea.append(password);
